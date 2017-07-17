@@ -1,4 +1,4 @@
-# prints hailstone sequence from given instance G
+# prints hailstone sequence from given starting point
 'Input Starting Value'
 print
 inp
