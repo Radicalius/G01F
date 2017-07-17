@@ -58,6 +58,21 @@ public class Interpreter {
                     int arg1 = stack.pop();
                     int arg2 = stack.pop();
                     stack.push(arg2 % arg1);
+                }if (command.equals("and")){
+                    int arg1 = stack.pop();
+                    int arg2 = stack.pop();
+                    stack.push(arg2 & arg1);
+                }if (command.equals("not")){
+                    int arg1 = stack.pop();
+                    stack.push(~arg1);
+                }if (command.equals("or")){
+                    int arg1 = stack.pop();
+                    int arg2 = stack.pop();
+                    stack.push(arg2 | arg1);
+                }if (command.equals("xor")){
+                    int arg1 = stack.pop();
+                    int arg2 = stack.pop();
+                    stack.push(arg2 ^ arg1);
                 }
                 if (command.equals("echo")) {
                     int arg1 = stack.pop();
