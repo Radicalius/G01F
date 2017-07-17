@@ -2,7 +2,7 @@
 8-bit Stack Based Assembly-Like Language for Code Golf
 ## Syntax
 Each instruction is either a command or an immediate.  If the most significant bit is 1, the instruction is interpreted as an immediate.
-Otherwise, it is interpreted as a command.  This leaves room for 127 instructions, and two's compliment signed immediates in the range of [-64,63].<br><br>
+Otherwise, it is interpreted as a command.  This leaves room for 127 instructions, and 7-bit two's compliment signed immediates on the interval [-64,63].<br><br>
 Immediate values are pushed to the stack.  Commands pop their operands from the stack, and push their results back to the stack.
 For Example:
 ```
@@ -114,4 +114,5 @@ Immediates for control commands are counted from the control command itself
 - Nop: does nothing; useful as a placeholder
 - Ditto: Duplicate the top of the stack
 - Ditto2: Duplicate first 2 elements of the stack
+- Flop: swaps 1st two elements in the stack
 

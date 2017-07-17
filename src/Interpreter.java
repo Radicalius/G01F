@@ -156,6 +156,11 @@ public class Interpreter {
                     } else {
                         stack.push(1);
                     }
+                }if (command.equals("flop")){
+                    int a = stack.pop();
+                    int b = stack.pop();
+                    stack.push(a);
+                    stack.push(b);
                 }
             }catch (EmptyStackException j){
                 System.out.println("ERROR: Stack Underflow!");
@@ -182,10 +187,10 @@ public class Interpreter {
                 }
             }
             while (PC < code.size()){
-               // System.out.println("----------------");
-               // System.out.println(code.get(PC));
+                //System.out.println("----------------");
+                //System.out.println(code.get(PC));
                 PC += exec(code.get(PC));
-               // System.out.println(stack);
+                //System.out.println(stack);
             }
         }catch(IOException e){
             System.out.println("ERROR: Failed to open file "+filename);

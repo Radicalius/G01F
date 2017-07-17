@@ -3,8 +3,8 @@
 # returns n%k if n/k%2=0
 # returns k-n%k otherwise
 
-'Bounce Modulus'
-print
+#'Bounce Modulus'
+#print
 inp
 inp
 ditto2
