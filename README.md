@@ -11,6 +11,76 @@ Example:
 add          # pops from the stack twice, adds values, and pushes result to stack
 echo         # pops 4 from stack and prints it
 ```
+## Sample Programs
+### Hello World (helloworld.g)
+```
+# print Hello World!
+0
+72
+101
+108
+108
+111
+032
+087
+111
+114
+108
+100
+033
+print
+
+# short hand:
+'Hello World!'
+print
+```
+### Fibonacci (fib.g)
+```
+# fibonacci
+'Fibonnacci'         
+print            # Print Header
+1                # Initial Values
+1
+ditto            # Copy for printing
+echo             # print current fib nu,
+ditto2           # copy two previous fibonnacci nums
+add              # take the sum to find the next one
+ditto            # Copy the next num for comparison
+1000
+gt               # See if its greater than 1000
+3                
+if               # if it is, skip ahead three lines to the nop
+-10              
+jump             # otherwise, jump back 10 lines to the top of the loop
+nop              # end program
+```
+### Hailstone (hailstone.g)
+```
+# prints hailstone sequence from given starting point
+'Input Starting Value'       
+print
+inp                     # take input for starting value
+ditto                   # copy for modulus
+2
+mod                     # see if its divisible by 2
+5
+if                      # if it is, jump ahead 5 lines to 3
+2
+div                     # otherwise, divide the number by two
+5
+jump                    # and then skip over the else case
+3
+mul                     # if its not divisble by two, multiply by three
+1
+add                     # and add 1
+ditto                   # copy for printing
+echo                    # print current hailstone number
+ditto                   # copy for comparison
+1                       
+neq                     # see if its equal to 1
+-19
+if                      # if its not, jump back to the top of the loop
+```
 ## Commands
 ### Arithmetic
 All Arithmetic Commands take two arguments.
