@@ -6,7 +6,7 @@ import java.util.HashMap;
  */
 public class Assembler {
 
-    static String[] cmds = {"nop","add","sub","mul","div","mod","and","or","not","xor","inp","echo","print", "eq", "neq", "lt", "gt", "jump", "if", "ditto", "ditto2", "flop"};
+    static String[] cmds = {"nop","add","sub","mul","div","mod","and","or","not","xor","inp","echo","print", "eq", "neq", "lt", "gt", "jump", "if", "ditto", "ditto2", "flop", "swap"};
 
     public static void main(String[] args){
         String inp = args[0];

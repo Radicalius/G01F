@@ -27,6 +27,9 @@ public class Interpreter {
             stack.push(val);
         }catch(Exception e) {
             try {
+                if (command.equals("inps")){
+                    command = "'"+stdin.readLine().trim()+"'";
+                }
                 if (command.startsWith("'")) {
                     String g = command.replace("'", "");
                     stack.push(0);
@@ -161,10 +164,26 @@ public class Interpreter {
                     int b = stack.pop();
                     stack.push(a);
                     stack.push(b);
+                }if (command.equals("swap")){
+                    int num = stack.pop();
+                    int[] ints = new int[num];
+                    for (int i = 0; i < num; i++){
+                        ints[i] = stack.pop();
+                    }
+                    int a = ints[0];
+                    ints[0] = ints[num-1];
+                    ints[num-1] = a;
+                    for (int i = num-1; i >= 0; i--){
+                        stack.push(ints[i]);
+                    }
                 }
             }catch (EmptyStackException j){
                 System.out.println("ERROR: Stack Underflow!");
                 System.exit(3);
+            }catch (IOException f){}
+            catch (ArithmeticException g){
+                System.out.println("ERROR: Arithmetic Exception!");
+                System.exit(4);
             }
             if (stack.size() > MAX_STACK_SIZE){
                 System.out.println("ERROR: Stack Overflow!");
@@ -183,6 +202,8 @@ public class Interpreter {
                 String line = in.readLine();
                 line = line.trim();
                 if (!line.startsWith("#") && !line.equals("")) {
+                    String[] g = line.split("#");
+                    line = g[0].trim();
                     code.add(line);
                 }
             }
@@ -191,6 +212,7 @@ public class Interpreter {
                 //System.out.println(code.get(PC));
                 PC += exec(code.get(PC));
                 //System.out.println(stack);
+                //stdin.readLine();
             }
         }catch(IOException e){
             System.out.println("ERROR: Failed to open file "+filename);

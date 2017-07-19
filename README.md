@@ -115,4 +115,6 @@ Immediates for control commands are counted from the control command itself
 - Ditto: Duplicate the top of the stack
 - Ditto2: Duplicate first 2 elements of the stack
 - Flop: swaps 1st two elements in the stack
+- Swap: references the stack like a 1-indexed array; moves the element at specified index to the top of the stack, 
+deleting its original copy.
 
