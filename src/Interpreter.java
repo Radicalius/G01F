@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
+import java.util.HashMap;
 import java.util.Stack;
 
 /**
@@ -18,6 +19,7 @@ public class Interpreter {
     static BufferedReader stdin;
     static Stack<Character> char_buffer = new Stack<>();
     static ArrayList<String> code = new ArrayList<>();
+    static HashMap<String, Integer> labels = new HashMap<>();
     static int PC = 0;
 
     public static int exec(String command){
@@ -27,6 +29,10 @@ public class Interpreter {
             stack.push(val);
         }catch(Exception e) {
             try {
+                if (labels.containsKey(command)){
+                    stack.push(labels.get(command) - (PC+1));
+                    return 1;
+                }
                 if (command.equals("inps")){
                     command = "'"+stdin.readLine().trim()+"'";
                 }
@@ -201,10 +207,12 @@ public class Interpreter {
             while (in.ready()){
                 String line = in.readLine();
                 line = line.trim();
-                if (!line.startsWith("#") && !line.equals("")) {
+                if (!line.startsWith("#") && !line.equals("") && !line.endsWith(":")) {
                     String[] g = line.split("#");
                     line = g[0].trim();
                     code.add(line);
+                }else if (!line.startsWith("#") && line.endsWith(":")){
+                    labels.put(line.replace(":",""), code.size());
                 }
             }
             while (PC < code.size()){

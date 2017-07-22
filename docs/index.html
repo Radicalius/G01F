@@ -1,1 +1,79 @@
-<h1> GOLF </h1>
+<script>
+
+var PC = 0;
+var stack = [];
+var code;
+var stac;
+var ouput;
+var cont;
+
+window.onload = function(){
+	code = document.getElementById("code");
+	stac = document.getElementById("stack");
+	output = document.getElementById("out");
+	cont = code.value.split("\n");
+}
+
+function reset(){
+	PC = 0;
+	stack = [];
+	stac.value = "";
+	cont = code.value.split("\n");
+	output.value = "";
+}
+
+function step(){
+	if (PC < cont.length){
+		output.value += execute(cont[PC]);
+		PC+=1;
+	}else{
+		output.value += "[Program Terminated]\n";
+	}	
+}
+
+function run(){
+	for (i = 0; i < cont.length+1; i++){
+		step();
+	}
+}
+
+function execute(line){
+	var rv = "";
+	line = line.trim();
+	var i = parseInt(line);
+	if (isNaN(i)){
+		if (line == "add"){
+			var a = stack.pop();
+			var b = stack.pop();
+			stack.push(a+b);
+		}if (line == "echo"){
+			rv = stack.pop().toString()+"\n";
+		}
+	}else{
+		stack.push(i);
+	}
+	stac.value = "";
+	for (j = stack.length-1; j >= 0; j--){
+		stac.value += stack[j].toString()+"\n";
+	}
+	return rv;
+}
+
+</script>
+
+<h1 align=center> G01F </h1>
+<h2 align=center> Stack Based 8-bit Assembly-Like Esolang for Code Golfing</h2>
+<hr/>
+
+<table align=center>
+<tr>
+<td>Code:<br><textarea id=code rows=20 cols=80></textarea></td>
+<td>Stack:<br><textarea id=stack rows=20 cols=10></textarea></td>
+</tr>
+<tr>
+<td colspan=2>Input/Output:<br><textarea id=out rows=3 cols=100></textarea></td>
+</tr>
+<tr>
+<td><button type=button onclick=javascript:run()>Run</button><button type=button onclick=javascript:step()>Step</button><button type=button onclick=javascript:reset()>Reset</button></td>
+</tr>
+</table>

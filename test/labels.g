@@ -1,0 +1,13 @@
+0
+loop:
+1
+add
+ditto
+ditto
+mul
+echo
+ditto
+10
+neq
+loop
+if
